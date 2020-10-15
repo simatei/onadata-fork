@@ -19,8 +19,7 @@ from onadata.settings.common import *  # noqa
 
 # # # now override the settings which came from staging # # # #
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+    'default': {        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'onadata',
         'USER': 'onadata',
         'PASSWORD': 'onadata',
@@ -35,7 +34,7 @@ SLAVE_DATABASES = []
 # Make a unique unique key just for testing, and don't share it with anybody.
 SECRET_KEY = '~&nN9d`bxmJL2[$HhYE9qAk=+4P:cf3b'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0', '192.34.62.206']
 
 INTERNAL_IPS = ['127.0.0.1']
 

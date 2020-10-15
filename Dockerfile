@@ -11,8 +11,8 @@ RUN apt-get update -q &&\
         memcached=1.5.6-0ubuntu1.2 \
         libmemcached-dev=1.0.18-4.2ubuntu0.18.04.1 \
         build-essential=12.4ubuntu1 \
-        python3.6=3.6.9-1~18.04ubuntu1.1 \
-        python3.6-dev=3.6.9-1~18.04ubuntu1.1 \
+        python3.6=3.6.9~18.04ubuntu1.1 \
+        python3.6-dev=3.6.9~18.04ubuntu1.1 \
         python3-pip=9.0.1-2.3~ubuntu1.18.04.2 \
         virtualenv=15.1.0+ds-1.1 \
         git=1:2.17.1-1ubuntu0.7 \

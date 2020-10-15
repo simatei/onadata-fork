@@ -142,3 +142,4 @@ vine==1.3.0               # via amqp, celery
 xlrd==1.2.0               # via onadata, pyxform, tabulator
 xlwt==1.3.0               # via onadata
 zipp==3.0.0               # via importlib-metadata
+xmltodict==0.12.0         # via pypi

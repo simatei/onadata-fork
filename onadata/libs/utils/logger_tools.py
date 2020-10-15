@@ -36,7 +36,7 @@ from onadata.apps.logger.models.instance import (
     get_id_string_from_xml_str)
 from onadata.apps.logger.models.xform import XLSFormError
 from onadata.apps.logger.xform_instance_parser import (
-    DuplicateInstance, InstanceEmptyError, InstanceInvalidUserError,
+    DuplicateInstance, FailedValidation, InstanceEmptyError, InstanceInvalidUserError,
     InstanceMultipleNodeError, NonUniqueFormIdError, clean_and_parse_xml,
     get_deprecated_uuid_from_xml, get_submission_date_from_xml,
     get_uuid_from_xml)
@@ -475,6 +475,8 @@ def safe_create_instance(username, xml_file, media_files, uuid, request):
             _(u"Form does not exist on this account"))
     except ExpatError:
         error = OpenRosaResponseBadRequest(_(u"Improperly formatted XML."))
+    except FailedValidation:
+        error = OpenRosaResponseBadRequest(_(u"Submission Failed Validation."))
     except DuplicateInstance:
         response = OpenRosaResponse(_(u"Duplicate submission"))
         response.status_code = 202

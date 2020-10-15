@@ -22,6 +22,12 @@ class DuplicateInstance(Exception):
 
 
 @python_2_unicode_compatible
+class FailedValidation(Exception):
+    def __str__(self):
+        return _(u'Failed Validation')
+
+
+@python_2_unicode_compatible
 class InstanceInvalidUserError(Exception):
     def __str__(self):
         return _(u'Could not determine the user.')

@@ -383,8 +383,12 @@ def create_instance(username,
 
     xml = xml_file.read()
 
-    print('x'*80)
-    print(validate_data(xml))    
+    # print('x'*80)
+    # print(validate_data(xml))    
+    if validate_data(xml):
+        pass
+    else:
+        return FailedValidation()
 
     xform = get_xform_from_submission(xml, username, uuid, request=request)
     check_submission_permissions(request, xform)

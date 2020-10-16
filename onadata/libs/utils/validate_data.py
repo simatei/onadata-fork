@@ -13,9 +13,12 @@ def validate_data(xml):
     try:
         if type(submission_json['repeat_group'] == list):
 
-            interaction_details = [interaction['capture_insect_details']['insect_scientific_name']
-                                   for interaction in submission_json['repeat_group']]
+            try:
+                insect_name_other = [interaction['capture_insect_details']['insect_scientific_name_other']
+                                     for interaction in submission_json['repeat_group']]
 
-            return interaction_details
+                return insect_name_other
+            except:
+                pass
     except:
         pass

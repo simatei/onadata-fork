@@ -3,7 +3,7 @@ import xmltodict
 import json
 
 
-def validate_data(xml)
+def validate_data(xml):
     '''Function that validates data'''
     xml_str = json.dumps(xmltodict.parse(xml))
     xml_json = json.loads(xml_str)
@@ -13,8 +13,9 @@ def validate_data(xml)
     try:
         if type(submission_json['repeat_group'] == list):
 
-            interation_details = [interaction['interactions_details'] for interaction in submission_json['repeat_group']]
-            
-            return interation_details
+            interaction_details = [interaction['interactions_details']
+                                   for interaction in submission_json['repeat_group']]
+
+            return interaction_details
     except:
         pass

@@ -43,7 +43,7 @@ def validate_data(xml):
                 pass
         else:
             try:
-                name = submission_json['capture_insect_details']['insect_scientific_name_other']
+                name = submission_json['repeat_group']['capture_insect_details']['insect_scientific_name_other']
 
                 if name in check_gbif_data(name):
                     valid.append('T')

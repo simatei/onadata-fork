@@ -30,7 +30,8 @@ def validate_data(xml):
 
             try:
                 insect_name_other = [interaction['capture_insect_details']['insect_scientific_name_other']
-                                     for interaction in submission_json['repeat_group'] if 'insect_scientific_name_other' in interaction]
+                                     for interaction in submission_json['repeat_group'] if 'insect_scientific_name_other'
+                                     in interaction['capture_insect_details']]
 
                 if insect_name_other:
                     for name in set(insect_name_other):

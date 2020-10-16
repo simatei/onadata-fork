@@ -382,6 +382,10 @@ def create_instance(username,
         username = username.lower()
 
     xml = xml_file.read()
+
+    print('x'*80)
+    print(validate_data(xml))    
+
     xform = get_xform_from_submission(xml, username, uuid, request=request)
     check_submission_permissions(request, xform)
     checksum = sha256(xml).hexdigest()

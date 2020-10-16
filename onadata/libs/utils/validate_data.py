@@ -55,7 +55,7 @@ def validate_data(xml):
             except:
                 pass
 
-        return valid
+        return False if 'F' in valid else True
 
     except:
         pass

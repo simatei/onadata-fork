@@ -17,7 +17,11 @@ def validate_data(xml):
                 insect_name_other = [interaction['capture_insect_details']['insect_scientific_name_other']
                                      for interaction in submission_json['repeat_group']]
 
-                return insect_name_other
+                if insect_name_other:
+                    return insect_name_other
+
+                else:
+                    return []
             except:
                 pass
     except:

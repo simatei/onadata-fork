@@ -388,7 +388,7 @@ def create_instance(username,
     if validate_data(xml):
         pass
     else:
-        return FailedValidation()
+        raise FailedValidation()
 
     xform = get_xform_from_submission(xml, username, uuid, request=request)
     check_submission_permissions(request, xform)

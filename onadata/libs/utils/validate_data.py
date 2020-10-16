@@ -26,7 +26,7 @@ def validate_data(xml):
     valid = []
 
     try:
-        if type(submission_json['repeat_group'] == list):
+        if type(submission_json['repeat_group']) == list:
 
             try:
                 insect_name_other = [interaction['capture_insect_details']['insect_scientific_name_other']
@@ -39,6 +39,8 @@ def validate_data(xml):
                             valid.append('T')
                         else:
                             valid.append('F')
+                else:
+                    pass
             except:
                 pass
         else:

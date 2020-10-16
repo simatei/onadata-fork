@@ -39,15 +39,12 @@ def validate_data(xml):
                             valid.append('T')
                         else:
                             valid.append('F')
-
-                else:
-                    return []
             except:
                 pass
         else:
             try:
+                name = submission_json['capture_insect_details']['insect_scientific_name_other']
 
-                name = interaction['capture_insect_details']['insect_scientific_name_other']
                 if name in check_gbif_data(name):
                     valid.append('T')
                 else:
@@ -56,6 +53,6 @@ def validate_data(xml):
                 pass
 
         return valid
-        
+
     except:
         pass

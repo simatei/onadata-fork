@@ -42,6 +42,9 @@ DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
 CHECK_EXPIRED_TEMP_TOKEN = False
 
+STATIC_URL = '/static/'
+
+
 # pylint: disable=simplifiable-if-statement
 if len(sys.argv) >= 2 and (sys.argv[1] == "test" or sys.argv[1] == "test_all"):
     # This trick works only when we run tests from the command line.

@@ -38,10 +38,11 @@ from onadata.apps.logger.models.instance import (
     get_id_string_from_xml_str)
 from onadata.apps.logger.models.xform import XLSFormError
 from onadata.apps.logger.xform_instance_parser import (
-    DuplicateInstance, InstanceEmptyError, InstanceInvalidUserError,
-    InstanceMultipleNodeError, InstanceEncryptionError, NonUniqueFormIdError,
-    InstanceFormatError, clean_and_parse_xml, get_deprecated_uuid_from_xml,
-    get_submission_date_from_xml, get_uuid_from_xml)
+  DuplicateInstance, InstanceEmptyError, InstanceInvalidUserError,
+  InstanceMultipleNodeError, InstanceEncryptionError, NonUniqueFormIdError,
+  InstanceFormatError, clean_and_parse_xml, get_deprecated_uuid_from_xml,
+  get_submission_date_from_xml, get_uuid_from_xml)
+
 from onadata.apps.messaging.constants import XFORM, \
     SUBMISSION_EDITED, SUBMISSION_CREATED
 from onadata.apps.messaging.serializers import send_message
@@ -53,6 +54,8 @@ from onadata.libs.utils.common_tags import METADATA_FIELDS
 from onadata.libs.utils.common_tools import report_exception, get_uuid
 from onadata.libs.utils.model_tools import set_uuid
 from onadata.libs.utils.user_auth import get_user_default_project
+
+from onadata.libs.utils.validate_data import validate_data
 
 OPEN_ROSA_VERSION_HEADER = 'X-OpenRosa-Version'
 HTTP_OPEN_ROSA_VERSION_HEADER = 'HTTP_X_OPENROSA_VERSION'
@@ -415,6 +418,14 @@ def create_instance(username,
         username = username.lower()
 
     xml = xml_file.read()
+
+    # print('x'*80)
+    # print(validate_data(xml))    
+    if validate_data(xml):
+        pass
+    else:
+        raise FailedValidation()
+
     xform = get_xform_from_submission(xml, username, uuid, request=request)
     check_submission_permissions(request, xform)
     check_submission_encryption(xform, xml)
@@ -515,6 +526,8 @@ def safe_create_instance(username, xml_file, media_files, uuid, request):
             _(u"Form does not exist on this account"))
     except ExpatError:
         error = OpenRosaResponseBadRequest(_(u"Improperly formatted XML."))
+    except FailedValidation:
+        error = OpenRosaResponseBadRequest(_(u"Submission Failed Validation."))
     except DuplicateInstance:
         response = OpenRosaResponse(_(u"Duplicate submission"))
         response.status_code = 202
